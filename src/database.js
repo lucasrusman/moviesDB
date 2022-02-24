@@ -1,19 +1,11 @@
-const mysql = require('mysql');
+const { Sequelize } = require('sequelize');
 
-const mysqlConnection = mysql.createConnection({
-  host: 'localhost',
-  user: 'sqluser',
-  password: 'password',
-  database: 'moviedb'
-});
 
-mysqlConnection.connect(function (err) {
-  if (err) {
-    console.log(err);
-    return;
-  } else {
-    console.log('Db is connected');
-  }
-});
+const mysqlConnection = new Sequelize('moviedb', 'sqluser', 'password', {
+    host: 'localhost',
+    dialect : 'mysql'
+    //logging : false,
+
+})
 
 module.exports = mysqlConnection;

@@ -3,15 +3,9 @@ const router = express.Router();
 
 const mysqlConnection = require('../database');
 
-router.get('/', (req, res) => {
-  mysqlConnection.query('SELECT * FROM populars ORDER BY popularity DESC', (err, rows, fields) => {
-    if (!err) {
-      res.json(rows);
-    } else {
-      console.log(err);
-    }
-  });
-});
+const {getPopulars} = require('../controllers/popular.js')
+
+router.get('/', getPopulars);
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;

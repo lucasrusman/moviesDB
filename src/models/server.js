@@ -1,15 +1,18 @@
 
 const express = require('express')
+const mysqlConnection = require('../database')
 
 class Servidor{
     constructor(){
 
         //Iniciamos express
-        this.app = express()
-
+        this.app = express() 
+ 
         //Puerto
         this.port = process.env.PORT || 3000
 
+        //conexion a la base de datos
+        this.dbConnection()
         //MiddleWares
         this.middlewares()
 
@@ -21,7 +24,15 @@ class Servidor{
     }
 
 
-
+    async dbConnection(){
+        try {
+            await mysqlConnection.authenticate()
+            console.log('Db is connected')
+            
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
     middlewares(){
         //Directorio publico (public)\
         this.app.use(express.static('public'))
