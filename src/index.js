@@ -1,5 +1,18 @@
-const Servidor = require("./models/server");
+const express = require('express');
+const app = express();
+const cors = require('cors');
 
-const servidor = new Servidor();
+//Settings
+app.set('port',process.env.PORT || 3000)
+app.use(cors())
 
-servidor.listen();
+//Middlewares
+app.use(express.json())
+
+//Routes
+app.use(require('./routes/populars.js'))
+
+//Starting the server
+app.listen(app.get('port'), ()=> {
+    console.log("Server on port", app.get('port'))
+})
