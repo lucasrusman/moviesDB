@@ -1,12 +1,14 @@
 
 const express = require('express')
 const mysqlConnection = require('../database')
+const cors = require('cors')
 
 class Servidor{
     constructor(){
 
         //Iniciamos express
         this.app = express() 
+        this.app.use(cors())
  
         //Puerto
         this.port = process.env.PORT || 3000
