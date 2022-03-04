@@ -5,8 +5,6 @@ const mysqlConnection = require('../database');
 
 
 router.get('/:id', (req, res) => {
-    
-  console.log("asdf");
   const { id } = req.params;
   mysqlConnection.query('SELECT * FROM reviews WHERE id = ?', [id], (err, rows, fields) => {
     if (!err) {
