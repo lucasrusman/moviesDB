@@ -5,6 +5,7 @@ const cors = require('cors');
 
 
 // Paths
+const reviewPath = "/descripcion"
 
 //Settings
 app.set('port',process.env.PORT || 3000)
@@ -15,7 +16,7 @@ app.use(express.json())
 
 //Routes
 app.use(require('./routes/populars.js'))
-app.use(require('./routes/reviews.js'))
+app.use(require(reviewPath,'./routes/reviews.js'))
 
 //Starting the server
 app.listen(app.get('port'), ()=> {

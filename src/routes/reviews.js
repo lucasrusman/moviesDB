@@ -4,13 +4,13 @@ const router = express.Router();
 const mysqlConnection = require('../database');
 
 
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
     
   console.log("asdf");
   const { id } = req.params;
   mysqlConnection.query('SELECT * FROM reviews WHERE id = ?', [id], (err, rows, fields) => {
     if (!err) {
-      res.json(rows[0]);
+      res.json(rows);
     } else {
       console.log(err);
     }
