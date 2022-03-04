@@ -20,7 +20,9 @@ class Servidor{
         this.middlewares()
 
         this.popularPath = ''
-        this.descriptionPath = '/descripcion'
+        this.detailPath = '/descripcion'
+        this.reviewPath = '/descripcion'
+        this.similarPath = '/descripcion'
         
 
         //Rutas del archivo
@@ -40,9 +42,9 @@ class Servidor{
 
     rutas(){
         this.app.use(this.popularPath, require('../routes/populars'))
-        this.app.use(this.descriptionPath, require('../routes/reviews'))
-        this.app.use(this.descriptionPath, require('../routes/details'))
-        this.app.use(this.descriptionPath, require('../routes/similars'))
+        this.app.use(this.detailPath, require('../routes/details'))
+        this.app.use(this.reviewPath, require('../routes/reviews'))
+        this.app.use(this.similarPath, require('../routes/similars'))
     }
     listen(){
         this.app.listen(this.port, () =>{
