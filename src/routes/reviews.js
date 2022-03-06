@@ -15,8 +15,9 @@ router.get('/:id', (req, res) => {
   });
 });
 
-router.post('/', (req, res) => {
-  const {id, author, created_at, content } = req.body;
+router.post('/:id', (req, res) => {
+  const { id } = req.params;
+  const { author, created_at, content } = req.body;
   const query = `
         CALL reviewAdd(?, ?, ?, ?)
     `;
@@ -37,11 +38,11 @@ router.put('/:id', (req, res) => {
   const { author, created_at, content } = req.body;
   const { id } = req.params;
   const query = `
-        CALL movieEdit(?, ?, ?)
+        CALL movieEdit(?, ?, ?, ?)
     `;
   mysqlConnection.query(
     query,
-    [ author, created_at, content],
+    [id, author, created_at, content],
     (err, rows, fields) => {
       if (!err) {
         res.json({ Status: 'Review update' });

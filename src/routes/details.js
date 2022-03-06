@@ -19,8 +19,9 @@ router.get('/:id', (req, res) => {
 
 
 
-router.post('/', (req, res) => {
-  const { id,original_title, genrs,  overview, production_companies} = req.body;
+router.post('/:id', (req, res) => {
+  const { id } = req.params;
+  const { original_title, genrs,  overview, production_companies} = req.body;
   const query = `
         CALL detailAdd(?, ?, ?, ?, ?)
     `;
@@ -41,7 +42,7 @@ router.put('/:id', (req, res) => {
   const {original_title, genrs,  overview, production_companies } = req.body;
   const { id } = req.params;
   const query = `
-        CALL detailEdit(?, ?, ?, ?)
+        CALL detailEdit(?, ?, ?, ?, ?)
     `;
   mysqlConnection.query(
     query,

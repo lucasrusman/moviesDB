@@ -19,8 +19,9 @@ router.get('/:id', (req, res) => {
 
 
 
-router.post('/', (req, res) => {
-  const { id, id_similar, original_title, release_date, overview } = req.body;
+router.post('/:id', (req, res) => {
+  const { id } = req.params;
+  const {id_similar, original_title, release_date, overview } = req.body;
   const query = `
         CALL similarAdd(?, ?, ?, ?, ?)
     `;
@@ -41,11 +42,11 @@ router.put('/:id', (req, res) => {
   const {id_similar, original_title, release_date, overview  } = req.body;
   const { id } = req.params;
   const query = `
-        CALL similarEdit( ?, ?, ?, ?)
+        CALL similarEdit(?, ?, ?, ?, ?)
     `;
   mysqlConnection.query(
     query,
-    [, id_similar, original_title, release_date, overview ],
+    [id, id_similar, original_title, release_date, overview ],
     (err, rows, fields) => {
       if (!err) {
         res.json({ Status: 'Similar update' });
