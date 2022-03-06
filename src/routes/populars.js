@@ -28,7 +28,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   const { popularity, id, release_date, original_title, overview } = req.body;
   const query = `
-        CALL movieAdd(?, ?, ?, ?, ?)
+        CALL popularAdd(?, ?, ?, ?, ?)
     `;
   mysqlConnection.query(
     query,
@@ -47,7 +47,7 @@ router.put('/:id', (req, res) => {
   const { popularity, release_date, original_title, overview } = req.body;
   const { id } = req.params;
   const query = `
-        CALL movieEdit(?, ?, ?, ?, ?)
+        CALL popularEdit(?, ?, ?, ?, ?)
     `;
   mysqlConnection.query(
     query,
