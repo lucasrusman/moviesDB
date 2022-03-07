@@ -6,8 +6,7 @@ CREATE TABLE reviews (
 	id INT,
     author VARCHAR(3000) DEFAULT NULL,
     created_at VARCHAR(3000) DEFAULT NULL,
-    content VARCHAR(3000) DEFAULT NULL,
-    PRIMARY KEY (id)
+    content VARCHAR(3000) DEFAULT NULL
 );
 
 DESCRIBE reviews;
