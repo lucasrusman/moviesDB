@@ -5,7 +5,7 @@ USE movieDB;
 CREATE TABLE details (
 	id INT (6) NOT NULL,
     original_title VARCHAR(3000) DEFAULT NULL,
-    genres VARCHAR(3000) DEFAULT NULL,
+    genrs VARCHAR(3000) DEFAULT NULL,
     overview VARCHAR(3000) DEFAULT NULL,
     production_companies VARCHAR(3000) DEFAULT NULL,
     PRIMARY KEY (id)
