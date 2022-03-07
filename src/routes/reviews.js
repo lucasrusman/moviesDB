@@ -34,11 +34,11 @@ router.post('/:id', (req, res) => {
   );
 });
 
-router.put('/:id', (req, res) => {
-  const { author, created_at, content } = req.body;
-  const { id } = req.params;
+router.put('/:id/:author', (req, res) => {
+  const { created_at, content } = req.body;
+  const { id, author} = req.params;
   const query = `
-        CALL movieEdit(?, ?, ?, ?)
+        CALL reviewEdit(?, ?, ?, ?)
     `;
   mysqlConnection.query(
     query,
@@ -53,9 +53,9 @@ router.put('/:id', (req, res) => {
   );
 });
 
-router.delete('/:id', (req, res) => {
-  const { id } = req.params;
-  mysqlConnection.query('DELETE FROM reviews WHERE id = ?', [id], (err, rows, fields) => {
+router.delete('/:id/:author', (req, res) => {
+  const { id , author} = req.params;
+  mysqlConnection.query('DELETE FROM reviews WHERE id = ? and author = ?', [id, author], (err, rows, fields) => {
     if (!err) {
       res.json({ Status: 'Review delete' });
     } else {

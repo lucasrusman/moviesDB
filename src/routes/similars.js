@@ -38,9 +38,9 @@ router.post('/:id', (req, res) => {
   );
 });
   
-router.put('/:id', (req, res) => {
-  const {id_similar, original_title, release_date, overview  } = req.body;
-  const { id } = req.params;
+router.put('/:id/:id_similar', (req, res) => {
+  const { original_title, release_date, overview  } = req.body;
+  const { id, id_similar } = req.params;
   const query = `
         CALL similarEdit(?, ?, ?, ?, ?)
     `;
@@ -57,9 +57,9 @@ router.put('/:id', (req, res) => {
   );
 });
   
-router.delete('/:id', (req, res) => {
-  const { id } = req.params;
-  mysqlConnection.query('DELETE FROM similars WHERE id = ?', [id], (err, rows, fields) => {
+router.delete('/:id/:id_similar', (req, res) => {
+  const { id , id_similar} = req.params;
+  mysqlConnection.query('DELETE FROM similars WHERE id = ? and id_similar = ?', [id, id_similar], (err, rows, fields) => {
     if (!err) {
       res.json({ Status: 'Similar delete' });
     } else {
