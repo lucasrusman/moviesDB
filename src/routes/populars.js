@@ -26,9 +26,9 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+  console.log('fdsdfsa')
   const { popularity, release_date, original_title, overview } = req.body;
   console.log( popularity, release_date, original_title, overview );
-  console.log(req.body);
   mysqlConnection.query('INSERT INTO populars (popularity, release_date, original_title, overview) VALUES (?, ?, ?, ?); ',[popularity, release_date, original_title, overview ] ,  (err, rows, fields) => {
     if (!err) {
       res.json(rows[0]);
