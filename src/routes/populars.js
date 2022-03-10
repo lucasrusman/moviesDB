@@ -26,10 +26,10 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  console.log('fdsdfsa')
-  const { popularity, release_date, original_title, overview } = req.body;
-  console.log( popularity, release_date, original_title, overview );
-  mysqlConnection.query('INSERT INTO populars (popularity, release_date, original_title, overview) VALUES (?, ?, ?, ?); ',[popularity, release_date, original_title, overview ] ,  (err, rows, fields) => {
+  console.log(req.body)
+  const { popularity, realese_date, original_title, overview } = req.body;
+  console.log( popularity, realese_date, original_title, overview );
+  mysqlConnection.query('INSERT INTO populars (popularity, realese_date, original_title, overview) VALUES (?, ?, ?, ?); ',[popularity, realese_date, original_title, overview ] ,  (err, rows, fields) => {
     if (!err) {
       res.json(rows[0]);
     } else {
