@@ -44,7 +44,7 @@ router.post('/edit/:id', (req, res) => {
   const { popularity, realese_date, original_title, overview } = req.body;
   console.log(id,  popularity, realese_date, original_title, overview );
 
-  mysqlConnection.query('UPDATE populars SET popularity = ? WHERE id = ?;', [ popularity ,id], (err, rows, fields) => {
+  mysqlConnection.query('UPDATE populars SET popularity = ?, realese_date = ?, original_title = ?, overview = ? WHERE id = ?;', [ popularity, realese_date, original_title, overview, id], (err, rows, fields) => {
     if (!err) {
       res.json({ Status: 'Movie delete' });
     } else {
