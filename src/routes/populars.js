@@ -38,23 +38,19 @@ router.post('/', (req, res) => {
   });
 });
 
-router.put('/:id', (req, res) => {
-  const { popularity, release_date, original_title, overview } = req.body;
+router.post('/edit/:id', (req, res) => {
+  console.log("HOLSSSSSSSd")
   const { id } = req.params;
-  const query = `
-        CALL popularEdit(?, ?, ?, ?, ?)
-    `;
-  mysqlConnection.query(
-    query,
-    [popularity, id, release_date, original_title, overview],
-    (err, rows, fields) => {
-      if (!err) {
-        res.json({ Status: 'Movie update' });
-      } else {
-        console.log(err);
-      }
+  const { popularity, realese_date, original_title, overview } = req.body;
+  console.log(id,  popularity, realese_date, original_title, overview );
+
+  mysqlConnection.query('UPDATE populars SET popularity = ? WHERE id = ?;', [ popularity ,id], (err, rows, fields) => {
+    if (!err) {
+      res.json({ Status: 'Movie delete' });
+    } else {
+      console.log(err);
     }
-  );
+  });
 });
 
 router.delete('/:id', (req, res) => {
